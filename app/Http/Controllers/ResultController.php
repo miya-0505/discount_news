@@ -11,7 +11,7 @@ class ResultController extends Controller
         $lat = $request->lat;
         $lng = $request->lng;
         // currentLocationで表示
-        return view('currentLocation', [
+        return view('posts.currentLocation', [
             // 現在地緯度latをbladeへ渡す
             'lat' => $lat,
             // 現在地経度lngをbladeへ渡す

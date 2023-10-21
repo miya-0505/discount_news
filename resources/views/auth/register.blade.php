@@ -40,7 +40,7 @@
         </div>
         
         <div>
-            <btn><a>store_register</a></btn>
+            <btn><a href="/StoreRegister">store_register</a></btn>
         </div>
 
         <div class="flex items-center justify-end mt-4">

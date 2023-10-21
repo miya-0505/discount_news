@@ -29,6 +29,6 @@
             <p>確認用パスワード<input type="text"></p>
         </div>
         <button type="submit" name="btn">仮登録</button>
-        <p><a href="/StoreLogin">店舗ログイン</a></p>
+        <p><a href="/admin/login">店舗ログイン</a></p>
     </body>
 </html>

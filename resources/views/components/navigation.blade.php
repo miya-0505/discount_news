@@ -12,12 +12,15 @@
         </div>
         <u class="nav_login">
             <li><a href="/MyPage">マイページ</a></li>
-            <li><a href="{{ route('login') }}"><div>ログイン</div></a></li>
-            <li><a href="{{ route('register') }}"><div>新規登録</div></a></li>
+            <li><a href="/StoreLogin"><div>ログイン</div></a></li>
+            <li><a href="/StoreRegister"><div>新規登録</div></a></li>
+            <li>
+                ログイン中：{{ Auth::guard('admin')->user()->name ?? 'not login' }}
+            </li>
             <li>
                 <a href="">
                     <div>
-                        <form method="post" action="{{ route('logout') }}">
+                        <form method="post" action="{{ route('admin.logout') }}">
                             @csrf
                             <div>
                                 <button onclick="event.preventDefault(); this.closest('form').submit();">ログアウト</button>

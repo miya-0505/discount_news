@@ -1,14 +1,28 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('store_register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- company -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="company" :value="__('Company')" />
+            <x-text-input id="company" class="block mt-1 w-full" type="text" name="company" :value="old('company')" required autofocus autocomplete="company" />
+            <x-input-error :messages="$errors->get('company')" class="mt-2" />
         </div>
-
+        
+        <!-- store -->
+        <div>
+            <x-input-label for="store" :value="__('Store')" />
+            <x-text-input id="store" class="block mt-1 w-full" type="text" name="store" :value="old('store')" required autofocus autocomplete="store" />
+            <x-input-error :messages="$errors->get('store')" class="mt-2" />
+        </div>
+        
+        <!--Address -->
+        <div class="mt-4">
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="address" />
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+        </div>
+        
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
@@ -37,6 +51,11 @@
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+        
+        <!--store_register -->
+        <div>
+            <li><a href="/admin/registers"><div>新規登録</div></a></li>
         </div>
         
 

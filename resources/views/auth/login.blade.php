@@ -34,7 +34,7 @@
         
         <!-- store_login-->
         <div>
-            <botton class="store_login"><a href="/StoreLogin">store_login</a></botton>
+            <botton class="store_login"><a href="/admin/login">store_login</a></botton>
         </div>
 
         <div class="flex items-center justify-end mt-4">
@@ -45,7 +45,7 @@
             @endif
 
             <x-primary-button class="ml-3">
-                {{ __('Log in') }}
+                ログイン
             </x-primary-button>
         </div>
     </form>

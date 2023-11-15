@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-    中略
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <title>Laravel</title>
+    
+        <!-- Fonts -->
+        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
+        <!-- Styles -->
+        <style>
+            body {
+                font-family: 'Nunito', sans-serif;
+            }
+        </style>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-    <div id="map" style="height:500px">
-    </div>
-        <script>
-            // currentLocation.jsで使用する定数latに、controllerで定義した$latをいれて、currentLocation.jsに渡す
-            const lat = {{ $lat }};
-
-            // currentLocation.jsで使用する定数lngに、controllerで定義した$lngをいれて、currentLocation.jsに渡す
-            const lng = {{ $lng }};
-        </script>
-        {{--    上記の処理をしてから、googleMapを読み込まないとエラーが出てくる--}}
-
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <script src="{{ asset('/js/setLocation.js') }}"></script>
-        <script src="{{ asset('/js/currentLocation.js') }}"></script>
+    
+    <body class="antialiased">
+        <div id="map" style="height:500px; width:800px;"></div>
+    
+        <form>
+            <input type="text" name="address" value="" id="address">
+            <button type="button" id="button">検索</button>
+        </form>
+    
+        <ul>
+            <li>lat: <span id="lat"></span></li>
+            <li>lng: <span id="lng"></span></li>
+        </ul>
+    
+        <script src="{{ asset('/js/map.js') }}"></script>
         <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyDkveHRqHWUqMU4CS_isfGbuBrzzoo6v4o&callback=initMap" async defer>
         </script>
     </body>

@@ -21,7 +21,11 @@
         </div>
     </div>
     <div class="goods">
-        <img src="{{ asset('img/donuts.png')}}">
-        <p>テキスト</p>
+        @foreach ($store_info as $item)
+            <div class='post'>
+                <h2 class='title'>{{ $item->name }}</h2>
+                <p class='body'>{{ $item->price }}</p>
+            </div>
+        @endforeach
     </div>
 </x-index-layout>

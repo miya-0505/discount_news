@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\AdminUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemsController extends Controller
 {
@@ -18,7 +20,7 @@ class ItemsController extends Controller
       $items = Item::all();
       // 'items'フォルダ内の'index'viewファイルを返す。
       // その際にview内で使用する変数を代入します。
-      return view('items/index', ['items' => $items]);
+      return view('layouts/post', ['items' => $items]);
     }
 
     /**
@@ -45,6 +47,7 @@ class ItemsController extends Controller
       $item->name = $request->name;
       $item->description = $request->description;
       $item->price = $request->price;
+      $item->admin_user_id = 2;
       // データベースに保存
       $item->save();
       // indexページへ遷移
@@ -60,7 +63,7 @@ class ItemsController extends Controller
     public function show($id)
     {
       $item = Item::find($id); // idでItemを探し出す
-      return view('items.show', ['item' => $item]);
+      return view('show', ['item' => $item]);
     }
 
     /**
@@ -72,7 +75,7 @@ class ItemsController extends Controller
     public function edit($id)
     {
       $item = Item::find($id);
-      return view('items.edit', ['item' => $item]);
+      return view('edit', ['item' => $item]);
     }
 
     /**
@@ -103,5 +106,25 @@ class ItemsController extends Controller
       $item = Item::find($id);
       $item->delete();
       return redirect('/items');
+    }
+    
+    public function storeInfo(Item $item)
+    {
+      return view('posts.store_info')->with(['store_info' => $item->get()]);
+    }
+    
+    /*public function show(Item $item)
+    {
+      return view('posts.store_info')->with(['item' => $item]);
+    }
+    
+    public function show($id)
+    {
+      return view('posts.top')->with(['item'=>$item]);
+    }*/
+    
+    public function topShowItem(Item $item, AdminUser $adminuser)
+    {
+      return view('posts/top')->with(['items' => $item->get(),'adminusers'=> $adminuser->get()]);
     }
 }

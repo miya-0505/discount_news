@@ -4,20 +4,19 @@
 <x-index-layout>
     <div class="container">
         <main>
-            <div id="map" style="height:500px"></div>
-             {!! Form::open(['route' => 'result.currentLocation','method' => 'get']) !!}
-        　　 {{--隠しフォームでresult.currentLocationに位置情報を渡す--}}
-        　　 {{--lat用--}}
-        　　 {!! Form::hidden('lat','lat',['class'=>'lat_input']) !!}
-        　　 {{--lng用--}}
-        　　 {!! Form::hidden('lng','lng',['class'=>'lng_input']) !!}
-        　　 {{--setlocation.jsを読み込んで、位置情報取得するまで押せないようにdisabledを付与し、非アクティブにする。--}}
-        　　 {{--その後、disableはfalseになるようにsetlocation.js内に記述した--}}
-        　　 {!! Form::submit("周辺を表示", ['class' => "btn btn-success btn-block",'disabled']) !!}
-        　　 {!! Form::close() !!}
-        　　<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-            <script src="{{ asset('/js/setLocation.js') }}"></script>
-            <script src="{{ asset('/js/result.js') }}"></script>
+            <div id="map" style="height:500px; width:800px;"></div>
+        
+            <form>
+                <input type="text" name="address" value="静岡県浜松市早出町234-2" id="address">
+                <button type="button" id="button">検索</button>
+            </form>
+        
+            <ul>
+                <li>lat: <span id="lat"></span></li>
+                <li>lng: <span id="lng"></span></li>
+            </ul>
+        
+            <script src="{{ asset('/js/map.js') }}"></script>
             <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyBmfjRN-Oxl9AMH2Si09gVdS3usd4uZA2k&callback=initMap" async defer>
 	        </script>
 
@@ -72,6 +71,7 @@
                 <button class="btn" type="submit" name="btn">検索</button>
         </main>
         <aside>
+            @foreach ($adminusers as $adminuser)
             <div class="store_container">
                  <div class="store_contents">
                     <img class="store_img" src="{{ asset('img/store.png')}}">
@@ -81,39 +81,14 @@
                         <li>営業時間</li>
                         <li>ドライブスルー</li>
                     </ul>
-                    <p><a href="/StoreInfo">Store Page</a></p>
-                </div>
-                <div class="store_contents">
-                    <img class="store_img" src="{{ asset('img/store.png')}}">
-                    <P>TITLE</P>
-                    <ul class="store_li">
-                        <li>住所</li>
-                        <li>営業時間</li>
-                        <li>ドライブスルー</li>
-                    </ul>
-                    <p><a href="/StoreInfo">Store Page</a></p>
-                </div>
-                <div class="store_contents">
-                    <img class="store_img" src="{{ asset('img/store.png')}}">
-                    <P>TITLE</P>
-                    <ul class="store_li">
-                        <li>住所</li>
-                        <li>営業時間</li>
-                        <li>ドライブスルー</li>
-                    </ul>
-                   <p><a href="/StoreInfo">Store Page</a></p>
-                </div>
-                <div class="store_contents">
-                    <img class="store_img" src="{{ asset('img/store.png')}}">
-                    <P>TITLE</P>
-                    <ul class="store_li">
-                        <li>住所</li>
-                        <li>営業時間</li>
-                        <li>ドライブスルー</li>
-                    </ul>
-                    <p><a href="/StoreInfo">Store Page</a></p>
+                    @foreach ($items as $item)
+                    @if($item->admin_user_id == $adminuser->id)
+                        <p><a href="/posts/{{ $item->id }}">{{ $item->name }}</a></p>
+                    @endif
+                    @endforeach
                 </div>
             </div>
+            @endforeach
         </aside>
     </div>
 </x-index-layout>

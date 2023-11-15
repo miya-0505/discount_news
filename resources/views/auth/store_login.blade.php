@@ -4,12 +4,14 @@
 
     <form method="POST" action="{{ route('store_login') }}">
         @csrf
-        <!--店舗名-->
+        <!--店舗名
         <div>
             <x-input-label for="store" :value="__('Store')" />
             <x-text-input id="store" class="block mt-1 w-full" type="text" name="store" :value="old('store')" required autofocus autocomplete="store" />
             <x-input-error :messages="$errors->get('store')" class="mt-2" />
         </div>
+        
+        -->
 
         <!-- Email Address -->
         <div>

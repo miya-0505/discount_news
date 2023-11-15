@@ -16,9 +16,10 @@ use App\Http\Controllers\ItemsController;/*商品登録機能用（投稿）*/
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,9 +35,16 @@ require __DIR__.'/auth.php';
 
 
 /*トップページ*/
-Route::get('/', function() {
+/*Route::get('/', function() {
     return view('posts.top');
-});
+});*/
+
+Route::get('/', [\App\Http\Controllers\ItemsController::class, 'topShowItem']);
+
+Route::get('/TopPage', [\App\Http\Controllers\ResultController::class, 'currentLocation']);
+
+Route::get('/StoreInfo', [ItemsController::class, 'StoreInfo']);
+
 
 /*マイページ*/
 Route::get('/MyPage',function() {
@@ -44,14 +52,14 @@ Route::get('/MyPage',function() {
 });
 
 /*ログイン*/
-Route::get('/LogIn',function() {
+/*Route::get('/LogIn',function() {
     return view('posts.login');
-});
+});*/
 
-/*店舗ログイン*/
-Route::get('/StoreLogin',function() {
+/*Route::get('/Login',function() {
     return view('auth.store_login');
-});
+});*/
+/*店舗ログイン*/
 /*-----------------------*/
 Route::get('/admin/login', function () {
     return view('adminLogin');
@@ -61,9 +69,9 @@ Route::get('/admin/dashboard', function () {
 })->middleware('auth:admin');
 
 Route::get('/admin/log', [\App\Http\Controllers\LoginController::class, 'adminLogin'])->name('login');
-Route::post('/admin/log', [\App\Http\Controllers\Login::class, 'adminLogin'])->name('admin.login');
-Route::get('/admin/logout', [\App\Http\Controllers\LoginController::class, 'adminLogout'])->name('admin.logout');
-Route::post('/admin/logout', [\App\Http\Controllers\LoginController::class, 'adminLogout'])->name('admin.logout');
+Route::post('/admin/log', [\App\Http\Controllers\LoginController::class, 'adminLogin'])->name('admin.login');
+Route::get('/admin/logout', [\App\Http\Controllers\Login::class, 'adminLogout'])->name('admin.logout');
+Route::post('/admin/logout', [\App\Http\Controllers\Login::class, 'adminLogout'])->name('admin.logout');
 
 
 /*ストア新規登録*/
@@ -77,14 +85,11 @@ Route::post('/admin/register', [\App\Http\Controllers\RegisterController::class,
 
 
 /*ストア情報*/
-Route::get('/StoreInfo',function() {
-    return view('posts.store_info');
-});
+Route::get('/StoreInfo', [\App\Http\Controllers\ItemsController::class, 'storeInfo']);
 
 /*ストアページ*/
-Route::get('/StorePage', function() {
-    return view('posts.store_page');
-});
+Route::get('/posts/{item}', [ItemsController::class , 'show']);
+
 /*商品登録（投稿）ページ*/
 Route::resource('items', ItemsController::class);
 /*上記と下記は同義

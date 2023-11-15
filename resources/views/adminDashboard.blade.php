@@ -15,10 +15,8 @@
                     ログアウト
                 </a>
             </li>
-             <li>
-                <a href="{{route('admin.register')}}">
-                    アカウント作成
-                </a>
+            <li>
+                <a href="/">ホーム</a>
             </li>
         </ul>
     </body>

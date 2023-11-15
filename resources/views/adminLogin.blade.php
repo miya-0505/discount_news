@@ -21,5 +21,9 @@
             <input type="password" id="password" name="password">
             <input type="submit" value="login"/>
         </form>
+        
+        <button>
+            <a href="/admin/registers">新規登録</a>
+        </button>
     </body>
 </html>

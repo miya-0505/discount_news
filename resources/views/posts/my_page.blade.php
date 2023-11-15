@@ -40,4 +40,5 @@
             <button type="submit" name="btn">保存</button>
         </aside>
     </div>
+    <button><a href="items">ストアページ</a></button>
 </x-index-layout>

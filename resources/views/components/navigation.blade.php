@@ -12,8 +12,8 @@
         </div>
         <u class="nav_login">
             <li><a href="/MyPage">マイページ</a></li>
-            <li><a href="/StoreLogin"><div>ログイン</div></a></li>
-            <li><a href="/StoreRegister"><div>新規登録</div></a></li>
+            <li><a href="/admin/login"><div>企業ログイン・登録</div></a></li>
+            <!--<li><a href="/StoreRegister"><div>新規登録</div></a></li>-->
             <li>
                 ログイン中：{{ Auth::guard('admin')->user()->name ?? 'not login' }}
             </li>

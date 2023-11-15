@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price');
             $table->timestamps();
+            $table->foreignId('admin_user_id')->constrained();
         });
     }
 
